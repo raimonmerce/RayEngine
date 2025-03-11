@@ -2,9 +2,9 @@
 #define RENDERER_H
 
 namespace Engine {
-    class Renderer {
-    public:
-        static void Render();
-    };
-}
+class Renderer {
+   public:
+    static void Render();
+};
+}  // namespace Engine
 #endif

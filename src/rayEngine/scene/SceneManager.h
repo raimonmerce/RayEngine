@@ -2,10 +2,10 @@
 #define SCENE_MANAGER_H
 
 namespace Engine {
-    class SceneManager {
-    public:
-        static void Update();
-    };
-}
+class SceneManager {
+   public:
+    static void Update();
+};
+}  // namespace Engine
 
 #endif

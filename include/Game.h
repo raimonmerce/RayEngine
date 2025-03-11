@@ -2,7 +2,7 @@
 #define GAME_H
 
 class Game {
-public:
+   public:
     void Init();
     void Update();
 };

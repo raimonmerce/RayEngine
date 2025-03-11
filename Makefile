@@ -11,6 +11,10 @@ OBJ = $(SRC:.cpp=.o)
 # Default target: build the executable and then run it.
 all: game.exe run
 
+format:
+	@echo "Formatting C++ source files..."
+	@powershell -Command "Get-ChildItem -Path . -Include *.cpp,*.h -Recurse | ForEach-Object { clang-format -i \"$_\" }"
+	# Get-ChildItem -Path . -Include *.cpp,*.h -Recurse | ForEach-Object { clang-format -i $_.FullName }
 game.exe: $(OBJ)
 	$(CC) $(OBJ) -o game.exe $(CFLAGS)
 
