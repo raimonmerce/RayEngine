@@ -1,7 +1,6 @@
-#include <GL/glut.h>
-
-#include "Game.h"
 #include "RayEngine.h"
+#include "Game.h"
+#include <GL/glut.h>
 
 void display() {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -29,7 +28,7 @@ int main(int argc, char **argv) {
     // glutMainLoop();
     glutInit(&argc, argv);
 
-    RayEngine engine;
+    Engine::RayEngine engine;
     Game game;
 
     engine.Init();

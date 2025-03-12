@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Iinclude -mconsole -lopengl32 -lglu32 -lfreeglut
+CFLAGS = -Iinclude -mconsole -lglew32 -lopengl32 -lglu32 -lfreeglut -Isrc/rayEngine/libs
 
 # Recursive wildcard function: Searches a directory and its subdirectories for a given pattern.
 rwildcard = $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2) $(filter $(subst *,%,$2),$d))

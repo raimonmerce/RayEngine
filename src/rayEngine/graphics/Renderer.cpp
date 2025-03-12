@@ -1,19 +1,19 @@
 #include "Renderer.h"
-
+#include "../scene/SceneManager.h"
+#include <GL/glew.h>
 #include <GL/glut.h>
 
 namespace Engine {
 void Renderer::Render() {
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glBegin(GL_TRIANGLES);
-    glColor3f(1, 0, 0);
-    glVertex2f(-0.5, -0.5);
-    glColor3f(0, 1, 0);
-    glVertex2f(0.5, -0.5);
-    glColor3f(0, 0, 1);
-    glVertex2f(0, 0.5);
-    glEnd();
+    const auto& objects = SceneManager::GetSceneObjects();
+    for (auto obj : objects) {
+        obj->Bind();
+        // Draw the object using indices (assuming triangles)
+        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+        obj->Unbind();
+    }
 
     glutSwapBuffers();
 }
