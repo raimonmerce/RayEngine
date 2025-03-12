@@ -28,9 +28,8 @@ namespace Engine {
         glutKeyboardFunc(InputManager::KeyboardHandler);
 
         // Set up OpenGL settings
-        glClearColor(0.0, 0.0, 0.0, 1.0);
+        glClearColor(1.0, 0.0, 0.0, 1.0);
         SceneManager::LoadScene();
-        std::cout << "Post LoadScene" << std::endl;
         glutDisplayFunc(Render);
         glutIdleFunc(Update);
     }

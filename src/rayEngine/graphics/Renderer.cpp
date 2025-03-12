@@ -9,10 +9,7 @@ void Renderer::Render() {
 
     const auto& objects = SceneManager::GetSceneObjects();
     for (auto obj : objects) {
-        obj->Bind();
-        // Draw the object using indices (assuming triangles)
-        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
-        obj->Unbind();
+        obj->Draw();
     }
 
     glutSwapBuffers();

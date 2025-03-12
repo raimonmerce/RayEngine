@@ -66,6 +66,9 @@
         "shared_mutex": "cpp",
         "sstream": "cpp",
         "stop_token": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "fstream": "cpp",
+        "filesystem": "cpp",
+        "codecvt": "cpp"
     }
 }

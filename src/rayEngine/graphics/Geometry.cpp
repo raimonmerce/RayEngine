@@ -8,7 +8,6 @@ namespace Engine {
       : vertices(vertices), indices(indices) {}
 
   void Geometry::SetupBuffers() {
-    std::cout << "A" << std::endl;
     // Generate the VAO, VBO, and EBO
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
