@@ -29,7 +29,7 @@ void SceneManager::SetCurrentScene(Scene* scene) {
 }
 
 void SceneManager::Update() {
-    std::cout << "Updating frame" << std::endl;
+    //std::cout << "Updating frame" << std::endl;
 }
 
 void SceneManager::Shutdown() {
