@@ -16,7 +16,7 @@ namespace Engine {
         std::cout << "Initializing RayEngine..." << std::endl;
 
         glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-        glutInitWindowSize(800, 600);
+        glutInitWindowSize(1280, 720);
         glutInitWindowPosition(100, 100);
         glutCreateWindow("Game RayEngine");
 
