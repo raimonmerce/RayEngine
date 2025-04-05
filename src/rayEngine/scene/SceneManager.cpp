@@ -1,49 +1,42 @@
 #include "SceneManager.h"
-#include "../graphics/Vertex.h"
+#include "../../../include/Vertex.h"
 #include "../libs/glm/glm.hpp"
-#include "../shaders/ShaderManager.h"
+#include "../../../include/ShaderManager.h"
 #include <iostream>
+#include <algorithm>
 
 namespace Engine {
-    std::vector<Mesh*> SceneManager::sceneObjects;
 
-    void SceneManager::LoadScene() { 
-        GLuint shaderProgramID = ShaderManager::LoadShaderProgram("simple_vertex.glsl", "simple_fragment.glsl");
+// Define static members.
+std::vector<Scene*> SceneManager::scenes;
+int SceneManager::currentSceneIndex = 0;
 
-        //Primer
-        Material* material = new Material(shaderProgramID, glm::vec3(0.0f, 0.0f, 1.0f));
-        std::vector<Vertex> vertices = {
-            Vertex(glm::vec3(-0.5f, -0.5f, 0.0f), glm::vec3(0, 0, 1), glm::vec2(0, 0)),
-            Vertex(glm::vec3( 0.5f, 0.5f, 0.0f), glm::vec3(0, 0, 1), glm::vec2(1, 0)),
-            Vertex(glm::vec3( -0.5f,  0.5f, 0.0f), glm::vec3(0, 0, 1), glm::vec2(0.5, 1))
-        };
-        std::vector<unsigned int> indices = { 0, 1, 2 };
-        Geometry* geometry = new Geometry(vertices, indices);
-        geometry->SetupBuffers();
-        Mesh* mesh = new Mesh(geometry, material);
-
-        sceneObjects.push_back(mesh);
-
-        //Segon
-        Material* material2 = new Material(shaderProgramID, glm::vec3(0.0f, 1.0f, 0.0f));
-        std::vector<Vertex> vertices2 = {
-            Vertex(glm::vec3(-0.5f, -0.5f, 0.0f), glm::vec3(0, 0, 1), glm::vec2(0, 0)),
-            Vertex(glm::vec3( 0.5f, -0.5f, 0.0f), glm::vec3(0, 0, 1), glm::vec2(1, 0)),
-            Vertex(glm::vec3( 0.5f,  0.5f, 0.0f), glm::vec3(0, 0, 1), glm::vec2(0.5, 1))
-        };
-        std::vector<unsigned int> indices2 = { 0, 1, 2 };
-        Geometry* geometry2 = new Geometry(vertices2, indices2);
-        geometry2->SetupBuffers();
-        Mesh* mesh2 = new Mesh(geometry2, material2);
-
-        sceneObjects.push_back(mesh2);
+Scene* SceneManager::GetCurrentScene() {
+    if (scenes.empty()) {
+        return nullptr;
     }
+    return scenes[currentSceneIndex];
+}
 
-    const std::vector<Mesh*>& SceneManager::GetSceneObjects() {
-        return sceneObjects;
+void SceneManager::SetCurrentScene(Scene* scene) {
+    auto it = std::find(scenes.begin(), scenes.end(), scene);
+    if (it != scenes.end()) {
+        currentSceneIndex = std::distance(scenes.begin(), it);
+    } else {
+        scenes.push_back(scene);
+        currentSceneIndex = scenes.size() - 1;
     }
+}
 
-    void SceneManager::Update() { 
-        //std::cout << "Updating Scene..." << std::endl; 
+void SceneManager::Update() {
+    std::cout << "Updating frame" << std::endl;
+}
+
+void SceneManager::Shutdown() {
+    for (Scene* scene : scenes) {
+        delete scene;
     }
+    scenes.clear();
+}
+
 }  // namespace Engine

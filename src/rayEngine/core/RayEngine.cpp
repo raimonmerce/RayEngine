@@ -29,7 +29,7 @@ namespace Engine {
 
         // Set up OpenGL settings
         glClearColor(1.0, 0.0, 0.0, 1.0);
-        SceneManager::LoadScene();
+        // SceneManager::LoadScene();
         glutDisplayFunc(Render);
         glutIdleFunc(Update);
     }
@@ -41,7 +41,16 @@ namespace Engine {
 
     void RayEngine::Shutdown() { std::cout << "Shutting down engine..." << std::endl; }
 
-    void RayEngine::Render() { Renderer::Render(); }
+    void RayEngine::Render() { 
+        Renderer::Render(); 
+    }
 
-    void RayEngine::Update() { SceneManager::Update(); }
+    void RayEngine::Update() { 
+        SceneManager::Update(); 
+        glutPostRedisplay();
+    }
+
+    void RayEngine::SetScene(Scene* scene) {
+        SceneManager::SetCurrentScene(scene);
+    }
 }  // namespace Engine

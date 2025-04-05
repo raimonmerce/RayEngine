@@ -1,7 +1,7 @@
 #ifndef VERTEX_H
 #define VERTEX_H
 
-#include "../libs/glm/glm.hpp"
+#include "../src/rayEngine/libs/glm/glm.hpp"
 
 struct Vertex {
     glm::vec3 position;

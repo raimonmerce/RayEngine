@@ -1,19 +1,22 @@
 #ifndef RAYENGINE_H
 #define RAYENGINE_H
 
+#include "Scene.h"
+
 namespace Engine {
-class RayEngine {
-   public:
-    RayEngine();
-    ~RayEngine();
+    class RayEngine {
+    public:
+        RayEngine();
+        ~RayEngine();
 
-    void Init();      // Initializes the RayEngine
-    void Run();       // Main game loop
-    void Shutdown();  // Cleanup
+        void Init();
+        void Run();
+        void Shutdown();
+        void SetScene(Scene* scene);
 
-   private:
-    static void Render();  // Rendering function
-    static void Update();  // Game update function
-};
-}  // namespace Engine
+    private:
+        static void Render();
+        static void Update();
+    };
+}
 #endif

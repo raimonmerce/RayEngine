@@ -2,7 +2,7 @@
 #define MATERIAL_H
 
 #include <GL/glew.h>
-#include "../libs/glm/glm.hpp"
+#include "../src/rayEngine/libs/glm/glm.hpp"
 
 namespace Engine {
 
