@@ -27,9 +27,7 @@ namespace Engine {
         }
         glutKeyboardFunc(InputManager::KeyboardHandler);
 
-        // Set up OpenGL settings
         glClearColor(1.0, 0.0, 0.0, 1.0);
-        // SceneManager::LoadScene();
         glutDisplayFunc(Render);
         glutIdleFunc(Update);
     }
