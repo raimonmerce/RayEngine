@@ -1,11 +1,21 @@
 #include "Mesh.h"
 #include <GL/glew.h>
 #include <iostream>
+#include "../src/rayEngine/libs/glm/gtc/type_ptr.hpp" 
 
 namespace Engine {
 
-Mesh::Mesh(Geometry* geometry, Material* material)
-    : geometry(geometry), material(material) {}
+Mesh::Mesh(Geometry* geometry, Material* material,
+    const glm::vec3& position,
+    const glm::vec3& rotation,
+    const glm::vec3& scale)
+ : Object3D(), geometry(geometry), material(material)
+{
+ // Set transformation properties
+ this->position = position;
+ this->rotation = rotation;
+ this->scale    = scale;
+}
 
 Mesh::~Mesh() {
     // Cleanup: delete geometry and material if owned by this Mesh.
@@ -13,11 +23,21 @@ Mesh::~Mesh() {
     delete material;
 }
 
-void Mesh::Draw() const {
+void Mesh::Draw() {
+    // std::cout << "Mesh draw" << std::endl;
     if(material && material->GetShaderProgram() != 0) {
         glUseProgram(material->GetShaderProgram());
     } else {
         std::cerr << "No valid shader program found for the material!" << std::endl;
+        return;
+    }
+
+    glm::mat4 model = GetWorldMatrix();
+    GLint modelLoc = glGetUniformLocation(material->GetShaderProgram(), "u_ModelMatrix");
+    if (modelLoc != -1) {
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    } else {
+        std::cerr << "ERROR::SHADER::UNIFORM::u_ModelMatrix NOT FOUND" << std::endl;
     }
 
     GLint colorLocation = glGetUniformLocation(material->GetShaderProgram(), "u_Color");

@@ -4,25 +4,25 @@
 namespace Engine {
 
     Scene::~Scene() {
-        for (Mesh* mesh : meshes) {
+        for (Object3D* mesh : objects) {
             delete mesh;
         }
-        meshes.clear();
+        objects.clear();
     }
 
-    void Scene::add(Mesh* mesh) {
-        meshes.push_back(mesh);
+    void Scene::add(Object3D* mesh) {
+        objects.push_back(mesh);
     }
 
-    void Scene::remove(Mesh* mesh) {
-        auto it = std::remove(meshes.begin(), meshes.end(), mesh);
-        if (it != meshes.end()) {
-            meshes.erase(it, meshes.end());
+    void Scene::remove(Object3D* mesh) {
+        auto it = std::remove(objects.begin(), objects.end(), mesh);
+        if (it != objects.end()) {
+            objects.erase(it, objects.end());
         }
     }
 
-    const std::vector<Mesh*>& Scene::getMeshes() const {
-        return meshes;
+    const std::vector<Object3D*>& Scene::getObjects() const {
+        return objects;
     }
 
 }

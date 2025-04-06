@@ -2,7 +2,7 @@
 #define SCENE_H
 
 #include <vector>
-#include "Mesh.h"
+#include "Object3D.h"
 
 namespace Engine {
 
@@ -11,14 +11,14 @@ public:
     Scene() = default;
     ~Scene();
 
-    void add(Mesh* mesh);
+    void add(Object3D* mesh);
 
-    void remove(Mesh* mesh);
+    void remove(Object3D* mesh);
 
-    const std::vector<Mesh*>& getMeshes() const;
+    const std::vector<Object3D*>& getObjects() const;
 
 private:
-    std::vector<Mesh*> meshes;
+    std::vector<Object3D*> objects;
 };
 
 }  // namespace Engine

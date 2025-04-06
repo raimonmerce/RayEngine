@@ -15,6 +15,7 @@ void Game::Update() {
 }
 
 Engine::Scene* Game::CreateInitialScene() {
+    std::cout << "Adding Mesh 1" << std::endl;
     auto* scene = new Engine::Scene();
 
     GLuint shaderProgramID = Engine::ShaderManager::LoadShaderProgram("simple_vertex.glsl", "simple_fragment.glsl");
@@ -28,9 +29,13 @@ Engine::Scene* Game::CreateInitialScene() {
     };
     auto* geometry1 = new Engine::Geometry(vertices1, {0, 1, 2});
     geometry1->SetupBuffers();
-    auto* mesh1 = new Engine::Mesh(geometry1, material1);
+    auto* mesh1 = new Engine::Mesh(geometry1, material1,
+        glm::vec3(0.0f, 0.0f, 0.0f),
+        glm::vec3(0.0f, 0.0f, 0.0f),
+        glm::vec3(0.5f, 1.0f, 1.0f)); 
+    
     scene->add(mesh1);
-
+    std::cout << "Adding Mesh 1" << std::endl;
     // Second Mesh
     auto* material2 = new Engine::Material(shaderProgramID, glm::vec3(0.0f, 1.0f, 1.0f));
     std::vector<Vertex> vertices2 = {
