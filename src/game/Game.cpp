@@ -2,6 +2,7 @@
 #include "Mesh.h"
 #include "Material.h"
 #include "Geometry.h"
+#include "PlaneGeometry.h"
 #include "Vertex.h"
 #include "ShaderManager.h"
 #include <iostream>
@@ -28,7 +29,6 @@ Engine::Scene* Game::CreateInitialScene() {
         Vertex(glm::vec3(-0.5f,  0.5f, 0.0f), glm::vec3(0, 0, 1), glm::vec2(0.5, 1))
     };
     auto* geometry1 = new Engine::Geometry(vertices1, {0, 1, 2});
-    geometry1->SetupBuffers();
     auto* mesh1 = new Engine::Mesh(geometry1, material1,
         glm::vec3(0.0f, 0.0f, 0.0f),
         glm::vec3(0.0f, 0.0f, 0.0f),
@@ -37,15 +37,12 @@ Engine::Scene* Game::CreateInitialScene() {
     scene->add(mesh1);
     std::cout << "Adding Mesh 1" << std::endl;
     // Second Mesh
-    auto* material2 = new Engine::Material(shaderProgramID, glm::vec3(0.0f, 1.0f, 1.0f));
-    std::vector<Vertex> vertices2 = {
-        Vertex(glm::vec3(-0.5f, -0.5f, 0.0f), glm::vec3(0, 0, 1), glm::vec2(0, 0)),
-        Vertex(glm::vec3( 0.5f,  0.5f, 0.0f), glm::vec3(0, 0, 1), glm::vec2(1, 0)),
-        Vertex(glm::vec3( 0.5f, -0.5f, 0.0f), glm::vec3(0, 0, 1), glm::vec2(0.5, 1))
-    };
-    auto* geometry2 = new Engine::Geometry(vertices2, {0, 1, 2});
-    geometry2->SetupBuffers();
-    auto* mesh2 = new Engine::Mesh(geometry2, material2);
+    auto* material2 = new Engine::Material(shaderProgramID, glm::vec3(0.0f, 1.0f, 0.0f));
+    auto* geometry2 = new Engine::PlaneGeometry(1,1);
+    auto* mesh2 = new Engine::Mesh(geometry2, material2,
+        glm::vec3(0.0f, 0.0f, 0.0f),
+        glm::vec3(0.0f, 0.0f, 0.0f),
+        glm::vec3(0.5f, 0.5f, 0.5f));
     scene->add(mesh2);
 
     return scene;
