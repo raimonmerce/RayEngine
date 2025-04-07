@@ -10,6 +10,7 @@ namespace Engine {
     Geometry(const std::vector<Vertex>& vertices, const std::vector<unsigned int>& indices);
     void Bind() const;
     void Unbind() const;
+    int GetIndexCount() const;
 
   protected:
     void SetupBuffers();

@@ -36,10 +36,14 @@ namespace Engine {
   }
 
   void Geometry::Bind() const {
-    glBindVertexArray(VAO);  // Bind the VAO for rendering
+    glBindVertexArray(VAO);
   }
 
   void Geometry::Unbind() const {
-    glBindVertexArray(0);  // Unbind the VAO after rendering
+    glBindVertexArray(0);
+  }
+
+  int Geometry::GetIndexCount() const {
+    return indices.size();
   }
 }

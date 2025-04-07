@@ -50,7 +50,7 @@ void Mesh::Draw() {
     
     if(geometry) {
         geometry->Bind();
-        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, geometry->GetIndexCount(), GL_UNSIGNED_INT, 0);
         geometry->Unbind();
     } else {
         std::cerr << "Geometry is not valid!" << std::endl;
