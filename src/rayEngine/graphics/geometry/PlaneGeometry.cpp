@@ -7,8 +7,6 @@ namespace Engine {
   PlaneGeometry::PlaneGeometry(float width, float height)
       : Geometry({}, {}) {
 
-    std::cout << "Plane Geometry" << std::endl;
-
     float w = width * 0.5f;
     float h = height * 0.5f;
 
