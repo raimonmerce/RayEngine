@@ -46,7 +46,6 @@ GLuint ShaderManager::LoadShaderProgram(const std::string& vertexShaderPath, con
     vertex = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertex, 1, &vShaderCode, nullptr);
     glCompileShader(vertex);
-    // Check for compile errors
     glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
     if (!success) {
         glGetShaderInfoLog(vertex, 512, nullptr, infoLog);
@@ -57,7 +56,6 @@ GLuint ShaderManager::LoadShaderProgram(const std::string& vertexShaderPath, con
     fragment = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragment, 1, &fShaderCode, nullptr);
     glCompileShader(fragment);
-    // Check for compile errors
     glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
     if (!success) {
         glGetShaderInfoLog(fragment, 512, nullptr, infoLog);
@@ -68,13 +66,11 @@ GLuint ShaderManager::LoadShaderProgram(const std::string& vertexShaderPath, con
     glAttachShader(shaderProgram, vertex);
     glAttachShader(shaderProgram, fragment);
     glLinkProgram(shaderProgram);
-    // Check for linking errors
     glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
     if (!success) {
         glGetProgramInfoLog(shaderProgram, 512, nullptr, infoLog);
         std::cerr << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
     }
-    // Delete the shaders as they're linked into our program now and no longer necessary
     glDeleteShader(vertex);
     glDeleteShader(fragment);
 
