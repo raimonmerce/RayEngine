@@ -8,6 +8,10 @@ namespace Engine {
             delete mesh;
         }
         objects.clear();
+        if (m_Camera) {
+            delete m_Camera;
+            m_Camera = nullptr;
+        }
     }
 
     void Scene::add(Object3D* mesh) {
@@ -25,4 +29,12 @@ namespace Engine {
         return objects;
     }
 
+    void Scene::SetCamera(Camera* camera) {
+        if (m_Camera) delete m_Camera;
+        m_Camera = camera;
+    }
+
+    Camera* Scene::GetCamera() const {
+        return m_Camera;
+    }
 }

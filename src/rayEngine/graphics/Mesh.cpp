@@ -32,6 +32,8 @@ void Mesh::Draw() {
         return;
     }
 
+    material->ApplyUniforms();
+
     glm::mat4 model = GetWorldMatrix();
     GLint modelLoc = glGetUniformLocation(material->GetShaderProgram(), "u_ModelMatrix");
     if (modelLoc != -1) {
@@ -42,12 +44,12 @@ void Mesh::Draw() {
 
     GLint colorLocation = glGetUniformLocation(material->GetShaderProgram(), "u_Color");
     if (colorLocation != -1) {
-        const glm::vec3& color = material->GetColor(); 
-        glUniform3f(colorLocation, color.r, color.g, color.b); // Red color
+        const glm::vec3& color = material->GetColor();
+        glUniform3f(colorLocation, color.r, color.g, color.b);
     } else {
         std::cerr << "ERROR::SHADER::UNIFORM::u_Color NOT FOUND" << std::endl;
     }
-    
+
     if(geometry) {
         geometry->Bind();
         glDrawElements(GL_TRIANGLES, geometry->GetIndexCount(), GL_UNSIGNED_INT, 0);
